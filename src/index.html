@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="color-scheme" content="dark">
+	<link rel="stylesheet" href="style.css">
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	<script src="main.js"></script>
+	<title>TimeAttack</title>
+</head>
+<body>
+	<div id="app"></div>
+
+	<template id="start_screen">
+		<script src="start.js"></script>
+		<div class="center-vertical">
+			<button id="start">Start</button>
+		</div>
+	</template>
+
+	<template id="game_screen">
+		<script src="game.js"></script>
+		<div class="center-vertical">
+			<div class="panel">
+				<pre id="question"></pre>
+				<input id="answer">
+			</div>
+		</div>
+	</template>
+</body>
+</html>
