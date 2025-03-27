@@ -16,7 +16,22 @@ body, html, #app {
 	padding: 20px;
 }
 
-#question, #answer {
+button {
+	background-color: rgba(255, 255, 255, 0.15);
+	border-radius: 4px;
+	padding: 6px 12px;
+	font-size: large;
+}
+
+button:hover {
+	background-color: rgba(255, 255, 255, 0.3);
+}
+
+button:active {
+	background-color: rgba(255, 255, 255, 0.1);
+}
+
+#aufgabe, #antwort {
 	font-size: xx-large;
 	font-family: monospace;
 	display: inline-block;
@@ -24,7 +39,11 @@ body, html, #app {
 	padding: 0;
 }
 
-#answer {
+#aufgabe {
+	margin-right: 1rem;
+}
+
+#antwort {
 	background-color: rgba(255, 255, 255, 0.15);
 	width: 90px;
 	height: 30px;
