@@ -1,14 +1,15 @@
 $("document").ready(bereit);
 
 let antwort_feld;
+let aufgabe;
 let score = 0;
 
 function bereit() {
 	antwort_feld = $("#antwort");
 	antwort_feld.on("keypress", antwort_eingabefilter);
 	
-	let aufgabe = aufgabe_generieren();
-	aufgabe_anzeigen(aufgabe);
+	aufgabe_generieren();
+	aufgabe_anzeigen();
 }
 
 function antwort_eingabefilter(event) {
@@ -39,15 +40,20 @@ function antwort_eingabefilter(event) {
 }
 
 function antwort_validieren(antwort) {
+	console.log(antwort);
+	for (let i = 0; i < aufgabe.length; i++) {
+		const element = aufgabe[i];
+		// todo
+	}
 	return true;
 }
 
-function aufgabe_anzeigen(aufgabe) {
+function aufgabe_anzeigen() {
 	$("#aufgabe").html(aufgabe.join(" "));
 }
 
 function aufgabe_generieren() {
-	let aufgabe = [];
+	aufgabe = [];
 	let parameter_anzahl = zufalls_zahl(2, 3);
 
 	for (let i = 0; i < parameter_anzahl; i++) {
@@ -63,8 +69,6 @@ function aufgabe_generieren() {
 	}
 
 	aufgabe.push("=");
-
-	return aufgabe;
 }
 
 function zufalls_zahl(min, max) {
