@@ -2,7 +2,9 @@ $("document").ready(bereit);
 
 let antwort_feld;
 let aufgabe;
+let antwort;
 let score = 0;
+let erlaubte_rechenzeichen = ["+", "-"];
 
 function bereit() {
 	antwort_feld = $("#antwort");
@@ -13,17 +15,21 @@ function bereit() {
 }
 
 function antwort_eingabefilter(event) {
-	if (event.key === "Enter") {
+	const antwort_leer = antwort_feld.val().length === 0;
+
+	if (event.key === "Enter" && !antwort_leer) {
 		// Enter gedrückt
-		let nummer = parseInt(antwort_feld.val());
-		antwort_feld.val(""); // Antwortfeld leeren
-		if (antwort_validieren(nummer)) {
-			// Richtige Antwort
+		let eingabe = parseInt(antwort_feld.val());
+		if (antwort == eingabe) {
+			antwort_feld.removeClass("falsch");
+			antwort_feld.val(""); // Antwortfeld leeren
 			score++;
-			let aufgabe = aufgabe_generieren();
-			aufgabe_anzeigen(aufgabe);
+			aufgabe_generieren();
+			aufgabe_anzeigen();
+		} else {
+			antwort_feld.addClass("falsch");
 		}
-	} else if (event.key === "-" && antwort_feld.val().length !== 0) {
+	} else if (event.key === "-" && !antwort_leer) {
 		// Minus nur am Anfang erlauben
 		event.preventDefault();
 	} else if ([",", "-"].includes(event.key) && !antwort_feld.val().includes(event.key)) {
@@ -34,18 +40,9 @@ function antwort_eingabefilter(event) {
 		antwort_feld.val(antwort_feld.val() + ",");
 		event.preventDefault();
 	} else if (isNaN(event.key)) {
-		// Eingabe ist keine Zahl
-		event.preventDefault(); // Eingabe ablehnen
+		// Eingabe ist keine Zahl, daher ablehnen
+		event.preventDefault();
 	}
-}
-
-function antwort_validieren(antwort) {
-	console.log(antwort);
-	for (let i = 0; i < aufgabe.length; i++) {
-		const element = aufgabe[i];
-		// todo
-	}
-	return true;
 }
 
 function aufgabe_anzeigen() {
@@ -68,7 +65,7 @@ function aufgabe_generieren() {
 		}
 	}
 
-	aufgabe.push("=");
+	antwort = math.evaluate(aufgabe.join(""));
 }
 
 function zufalls_zahl(min, max) {
@@ -76,14 +73,6 @@ function zufalls_zahl(min, max) {
 }
 
 function zufalls_rechenzeichen() {
-	switch (zufalls_zahl(1, 4)) {
-		case 1:
-			return "+";
-		case 2:
-			return "-";
-		case 3:
-			return "*";
-		case 4:
-			return "/";
-	}
+	let zahl = zufalls_zahl(0, erlaubte_rechenzeichen.length - 1);
+	return erlaubte_rechenzeichen[zahl];
 }

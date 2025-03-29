@@ -5,15 +5,25 @@
 	height: 100%;
 }
 
-body, html, #app {
+body, html, .full-width {
 	height: 100%;
 	margin: 0;
+}
+
+#app {
+	font-family: sans-serif;
+	view-transition-name: active-item;
 }
 
 .panel {
 	background-color: rgba(255, 255, 255, 0.1);
 	border-radius: 12px;
 	padding: 20px;
+}
+
+.falsch {
+	background-color: rgba(50255, 64, 50, 0.3) !important;
+	box-shadow: inset 0px 0px 0px 3px rgba(255, 0, 0, 0.5) !important;
 }
 
 button {
@@ -32,7 +42,7 @@ button:active {
 	background-color: rgba(255, 255, 255, 0.1);
 }
 
-#aufgabe, #antwort {
+pre, #antwort {
 	font-size: xx-large;
 	font-family: monospace;
 	display: inline-block;
@@ -40,8 +50,9 @@ button:active {
 	padding: 0;
 }
 
-#aufgabe {
-	margin-right: 1rem;
+pre {
+	letter-spacing: -0.2rem;
+	margin-right: 0.8rem;
 }
 
 #antwort {

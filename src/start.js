@@ -5,5 +5,5 @@ function bereit() {
 }
 
 function starten() {
-    template_laden(game_screen);
+    template_auswechseln(game_screen);
 }

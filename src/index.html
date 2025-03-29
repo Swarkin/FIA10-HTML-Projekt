@@ -4,34 +4,38 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="color-scheme" content="dark">
-	<link rel="stylesheet" href="style.css">
-	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-	<script src="main.js"></script>
 	<title>TimeAttack</title>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="main.js"></script>
+	<link rel="stylesheet" href="style.css">
+
+	<!-- Vorausladen von Skripten -->
+	<link rel="preload" href="start.js" as="script">
+	<link rel="preload" href="game.js" as="script">
+	<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/mathjs/14.2.1/math.min.js" as="script">
 </head>
 <body>
 	<!-- Hier werden Templates geladen -->
-	<div id="app"></div>
+		<div class="center-vertical full-width">
+			<div id="app" class="panel">
+				<p>Lädt...</p>
+			</div>
+		</div>
 
 	<!-- Startbildschirm -->
 	<template id="start_screen">
 		<script src="start.js"></script>
-		<div class="center-vertical">
-			<div class="panel">
-				<button id="start">Start</button>
-			</div>
-		</div>
+		<button id="start">Start</button>
 	</template>
 
 	<!-- Spielbildschirm -->
 	<template id="game_screen">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/14.2.1/math.min.js"></script>
 		<script src="game.js"></script>
-		<div class="center-vertical">
-			<div class="panel">
-				<pre id="aufgabe"></pre>
-				<input id="antwort">
-			</div>
-		</div>
+		<pre id="aufgabe"></pre>
+		<pre>=</pre>
+		<input id="antwort">
 	</template>
 </body>
 </html>
