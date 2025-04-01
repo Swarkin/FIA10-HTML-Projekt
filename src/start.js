@@ -1,7 +1,9 @@
 $("document").ready(bereit);
 
 function bereit() {
-    $("#start").click(starten);
+    let start = $("#start");
+    start.click(starten);
+    start.focus();
 }
 
 function starten() {

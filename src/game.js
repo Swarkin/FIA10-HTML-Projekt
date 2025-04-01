@@ -14,6 +14,8 @@ function bereit() {
 	score_feld = $("#score");
 	score_panel = $(".panel-score");
 
+	antwort_feld.focus();
+
 	aufgabe_generieren();
 	aufgabe_anzeigen();
 	timer_starten(15);
@@ -122,5 +124,7 @@ function timer_starten(zeit_s) {
 function timer_vorbei() {
 	document.startViewTransition(() => {
 		$("#eingabebereich").hide();
+		score_panel.css("background", "none");
+		score_feld.css("font-size", "xxx-large");
 	});
 }
