@@ -16,6 +16,7 @@ function bereit() {
 
 	aufgabe_generieren();
 	aufgabe_anzeigen();
+	timer_starten(15);
 }
 
 function antwort_eingabefilter(event) {
@@ -100,5 +101,26 @@ function animation_falsch() {
 
 	document.startViewTransition(() => {
 		score_panel.css("background-color", "");
+	});
+}
+
+function timer_starten(zeit_s) {
+	let interval = 0.05;
+	let zeit = 0;
+
+	let a = setInterval(() => {
+		zeit += interval;
+		score_panel.css("--timer", zeit / zeit_s);
+
+		if (zeit >= zeit_s) {
+			clearInterval(a);
+			timer_vorbei();
+		}
+	}, interval * 1000);
+}
+
+function timer_vorbei() {
+	document.startViewTransition(() => {
+		$("#eingabebereich").hide();
 	});
 }

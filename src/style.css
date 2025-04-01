@@ -1,3 +1,9 @@
+/* Wiederverwendbare Variablen */
+:root {
+	--timer: 0.9;
+	--radius: 6px;
+}
+
 .center {
 	display: flex;
 	align-items: center;
@@ -23,8 +29,9 @@ body, html, .full-width {
 
 .panel-score {
 	background-color: rgba(255, 255, 255, 0.05);
-	border-radius: 6px;
+	border-radius: var(--radius);
 	padding: 8px;
+	background: linear-gradient(to left, #4caf50, #4caf50 calc(var(--timer) * 100%), #00000000 calc(var(--timer) * 100%));
 }
 
 .falsch {
@@ -34,7 +41,7 @@ body, html, .full-width {
 
 button {
 	background-color: rgba(255, 255, 255, 0.15);
-	border-radius: 6px;
+	border-radius: var(--radius);
 	padding: 8px 20px;
 	font-size: x-large;
 	border: none;

@@ -13,14 +13,8 @@ function bereit() {
 }
 
 function template_auswechseln(template) {
-	const auswechseln = () => {
+	document.startViewTransition(() => {
 		app.empty();
 		template.contents().clone().appendTo(app);
-	};
-
-	if (!document.startViewTransition) {
-		auswechseln();
-	} else {
-		document.startViewTransition(auswechseln);
-	}
+	});
 }
