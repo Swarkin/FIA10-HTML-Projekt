@@ -1,4 +1,4 @@
-.center-vertical {
+.center {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -21,6 +21,12 @@ body, html, .full-width {
 	padding: 20px;
 }
 
+.panel-score {
+	background-color: rgba(255, 255, 255, 0.05);
+	border-radius: 6px;
+	padding: 8px;
+}
+
 .falsch {
 	background-color: rgba(50255, 64, 50, 0.3) !important;
 	box-shadow: inset 0px 0px 0px 3px rgba(255, 0, 0, 0.5) !important;
@@ -28,9 +34,9 @@ body, html, .full-width {
 
 button {
 	background-color: rgba(255, 255, 255, 0.15);
-	border-radius: 4px;
-	padding: 6px 12px;
-	font-size: large;
+	border-radius: 6px;
+	padding: 8px 20px;
+	font-size: x-large;
 	border: none;
 }
 
@@ -50,16 +56,19 @@ pre, #antwort {
 	padding: 0;
 }
 
-pre {
-	letter-spacing: -0.2rem;
-	margin-right: 0.8rem;
+#aufgabe {
+	letter-spacing: 0.5rem;
+}
+
+#istgleich {
+	margin-right: 0.5rem;
 }
 
 #antwort {
 	background-color: rgba(255, 255, 255, 0.15);
 	width: 90px;
 	height: 30px;
-	padding: 4px;
+	padding: 6px;
 	outline: none;
 	border: none;
 	border-radius: 6px;

@@ -1,6 +1,8 @@
 $("document").ready(bereit);
 
 let antwort_feld;
+let score_feld;
+let score_panel;
 let aufgabe;
 let antwort;
 let score = 0;
@@ -9,7 +11,9 @@ let erlaubte_rechenzeichen = ["+", "-"];
 function bereit() {
 	antwort_feld = $("#antwort");
 	antwort_feld.on("keypress", antwort_eingabefilter);
-	
+	score_feld = $("#score");
+	score_panel = $(".panel-score");
+
 	aufgabe_generieren();
 	aufgabe_anzeigen();
 }
@@ -23,11 +27,12 @@ function antwort_eingabefilter(event) {
 		if (antwort == eingabe) {
 			antwort_feld.removeClass("falsch");
 			antwort_feld.val(""); // Antwortfeld leeren
-			score++;
+			score_erhoehen(1);
+			animation_richtig();
 			aufgabe_generieren();
 			aufgabe_anzeigen();
 		} else {
-			antwort_feld.addClass("falsch");
+			animation_falsch();
 		}
 	} else if (event.key === "-" && !antwort_leer) {
 		// Minus nur am Anfang erlauben
@@ -46,7 +51,7 @@ function antwort_eingabefilter(event) {
 }
 
 function aufgabe_anzeigen() {
-	$("#aufgabe").html(aufgabe.join(" "));
+	$("#aufgabe").html(aufgabe.join(""));
 }
 
 function aufgabe_generieren() {
@@ -68,6 +73,11 @@ function aufgabe_generieren() {
 	antwort = math.evaluate(aufgabe.join(""));
 }
 
+function score_erhoehen(zahl) {
+	score += zahl;
+	score_feld.text(score);
+}
+
 function zufalls_zahl(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -75,4 +85,20 @@ function zufalls_zahl(min, max) {
 function zufalls_rechenzeichen() {
 	let zahl = zufalls_zahl(0, erlaubte_rechenzeichen.length - 1);
 	return erlaubte_rechenzeichen[zahl];
+}
+
+function animation_richtig() {
+	score_panel.css("background-color", "green");
+
+	document.startViewTransition(() => {
+		score_panel.css("background-color", "");
+	});
+}
+
+function animation_falsch() {
+	score_panel.css("background-color", "red");
+
+	document.startViewTransition(() => {
+		score_panel.css("background-color", "");
+	});
 }

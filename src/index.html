@@ -6,34 +6,40 @@
 	<meta name="color-scheme" content="dark">
 	<title>TimeAttack</title>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/14.2.1/math.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" referrerpolicy="no-referrer" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/14.2.1/math.min.js" referrerpolicy="no-referrer" crossorigin="anonymous"></script>
 	<script src="main.js"></script>
 	<link rel="stylesheet" href="style.css">
 
 	<!-- Vorausladen von Skripten -->
-	<link rel="preload" href="start.js" as="script">
-	<link rel="preload" href="game.js" as="script">
+	<link rel="prefetch" href="start.js" as="script">
+	<link rel="prefetch" href="game.js" as="script">
 </head>
 <body>
 	<!-- Hier werden Templates geladen -->
-		<div class="center-vertical full-width">
-			<div id="app" class="panel">
-				<p>Lädt...</p>
-			</div>
+	<div class="center full-width">
+		<div id="app" class="panel">
+			<p>Lädt...</p>
 		</div>
+	</div>
 
 	<!-- Startbildschirm -->
 	<template id="start_screen">
 		<script src="start.js"></script>
+
 		<button id="start">Start</button>
 	</template>
 
 	<!-- Spielbildschirm -->
 	<template id="game_screen">
 		<script src="game.js"></script>
+
+		<div class="panel-score">
+			<pre id="score" class="center">0</pre>
+		</div>
+		<br>
 		<pre id="aufgabe"></pre>
-		<pre>=</pre>
+		<pre id="istgleich">=</pre>
 		<input id="antwort">
 	</template>
 </body>
