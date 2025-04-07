@@ -2,6 +2,11 @@
 :root {
 	--timer: 0.9;
 	--radius: 6px;
+	--leaderboard-size: 200px;
+}
+
+body {
+	font-family: sans-serif;
 }
 
 .center {
@@ -16,14 +21,28 @@ body, html, .full-width {
 	margin: 0;
 }
 
+#container {
+	display: flex;
+	height: 100%;
+}
+
 #app {
-	font-family: sans-serif;
+	width: calc(100% - var(--leaderboard-size));
+}
+
+#leaderboard {
+	width: var(--leaderboard-size);
+	margin: 10px 10px 10px 0px;
+	align-content: center;
 }
 
 .panel {
 	background-color: rgba(255, 255, 255, 0.1);
 	border-radius: 12px;
 	padding: 20px;
+}
+
+.view-transition-scale {
 	view-transition-name: active-item;
 }
 
@@ -39,6 +58,7 @@ body, html, .full-width {
 	box-shadow: inset 0px 0px 0px 3px rgba(255, 0, 0, 0.5) !important;
 }
 
+
 button {
 	background-color: rgba(255, 255, 255, 0.15);
 	border-radius: var(--radius);
@@ -53,6 +73,11 @@ button:hover {
 
 button:active {
 	background-color: rgba(255, 255, 255, 0.1);
+}
+
+h1, h2, h3, h4 {
+	margin-top: 0px;
+	margin-bottom: 8px;
 }
 
 pre, #antwort {

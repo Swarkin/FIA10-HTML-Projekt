@@ -19,10 +19,21 @@
 	<link rel="prefetch" href="game.js" as="script">
 </head>
 <body>
-	<!-- Hier werden Templates geladen -->
-	<div id="app" class="center">
-		<div class="panel">
-			<p>Lädt...</p>
+	<div id="container">
+		<!-- Hier werden Templates geladen -->
+		<div id="app" class="center">
+			<div class="panel view-transition-scale">
+				<p>Lädt...</p>
+			</div>
+		</div>
+
+		<!-- Rangliste -->
+		<div id="leaderboard">
+			<div class="panel">
+				<h2>Rangliste</h2>
+				<p>TODO</p>
+				<!-- TODO: Table und HTTP Request -->
+			</div>
 		</div>
 	</div>
 
@@ -30,7 +41,7 @@
 	<template id="start_screen">
 		<script src="start.js"></script>
 
-		<div class="panel">
+		<div class="panel view-transition-scale">
 			<button id="start">Start</button>
 		</div>
 	</template>
@@ -39,7 +50,7 @@
 	<template id="game_screen">
 		<script src="game.js"></script>
 
-		<div class="panel">
+		<div class="panel view-transition-scale">
 			<div class="panel-score">
 				<pre id="score" class="center">0</pre>
 			</div>
