@@ -17,8 +17,8 @@
 </head>
 <body>
 	<!-- Hier werden Templates geladen -->
-	<div class="center full-width">
-		<div id="app" class="panel">
+	<div id="app" class="center">
+		<div class="panel">
 			<p>Lädt...</p>
 		</div>
 	</div>
@@ -27,21 +27,25 @@
 	<template id="start_screen">
 		<script src="start.js"></script>
 
-		<button id="start">Start</button>
+		<div class="panel">
+			<button id="start">Start</button>
+		</div>
 	</template>
 
 	<!-- Spielbildschirm -->
 	<template id="game_screen">
 		<script src="game.js"></script>
 
-		<div class="panel-score">
-			<pre id="score" class="center">0</pre>
-		</div>
-		<div id="eingabebereich">
-			<br>
-			<pre id="aufgabe"></pre>
-			<pre id="istgleich">=</pre>
-			<input id="antwort">
+		<div class="panel">
+			<div class="panel-score">
+				<pre id="score" class="center">0</pre>
+			</div>
+			<div id="eingabebereich">
+				<br>
+				<pre id="aufgabe"></pre>
+				<pre id="istgleich">=</pre>
+				<input id="antwort">
+			</div>
 		</div>
 	</template>
 </body>
