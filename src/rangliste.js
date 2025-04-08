@@ -11,10 +11,10 @@ let rangliste_tbody;
 
 function bereit() {
 	rangliste_tbody = $("#leaderboard-tbody");
-	anzeigen(Schwierigkeit.Normal);
+	rangliste_anzeigen(Schwierigkeit.Normal);
 }
 
-function anzeigen(schwierigkeit) {
+function rangliste_anzeigen(schwierigkeit) {
 	$.get(Api+"/score?difficulty="+schwierigkeit)
 		.fail(function() {
 			console.log("fail");
