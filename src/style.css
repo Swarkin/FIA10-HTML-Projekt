@@ -142,11 +142,11 @@ tr:nth-child(even) {
 	margin: 0 1.5rem;
 }
 
-.transition-app {
+.app-panel {
 	view-transition-name: app;
 }
 
-.transition-leaderboard {
+.leaderboard-panel {
 	view-transition-name: leaderboard;
 }
 
