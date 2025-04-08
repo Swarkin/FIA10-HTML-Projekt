@@ -1,6 +1,6 @@
 /* Wiederverwendbare Variablen */
 :root {
-	--timer: 0.9;
+	--timer: 0.0;
 	--radius: 6px;
 	--leaderboard-size: 200px;
 }
