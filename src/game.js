@@ -91,9 +91,11 @@ function zufalls_rechenzeichen() {
 
 function animation_flash(classname) {
 	score_panel.addClass(classname);
+	score_panel.css("outline", "none")
 	document.startViewTransition(() => {
 		score_panel.removeClass(classname);
-	});
+	score_panel.css("outline", "")
+});
 }
 
 function timer_starten(zeit_s) {
