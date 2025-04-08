@@ -17,6 +17,7 @@
 	<!-- Vorausladen von Skripten -->
 	<link rel="prefetch" href="start.js" as="script">
 	<link rel="prefetch" href="game.js" as="script">
+	<link rel="prefetch" href="rangliste.js" as="script">
 </head>
 <body>
 	<div id="container">
@@ -29,9 +30,17 @@
 
 		<!-- Rangliste -->
 		<div id="leaderboard">
+			<script src="rangliste.js"></script>
+
 			<div class="panel">
 				<h2>Rangliste</h2>
-				<p>TODO</p>
+				<table>
+					<thead>
+						<th>Name</th>
+						<th>Score</th>
+					</thead>
+					<tbody id="leaderboard-tbody"></tbody>
+				</table>
 				<!-- TODO: Table und HTTP Request -->
 			</div>
 		</div>

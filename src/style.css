@@ -88,6 +88,20 @@ pre, #antwort {
 	padding: 0;
 }
 
+ul {
+	margin: 0px;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th, td {
+	border: 1px solid rgba(255, 255, 255, 0.25);
+	padding: 6px 4px 4px 4px;
+}
+
 #aufgabe {
 	letter-spacing: 0.5rem;
 }
