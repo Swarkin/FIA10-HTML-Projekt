@@ -54,10 +54,14 @@ body, html, .full-width {
 }
 
 .falsch {
-	background-color: rgba(50255, 64, 50, 0.3) !important;
-	box-shadow: inset 0px 0px 0px 3px rgba(255, 0, 0, 0.5) !important;
+	background-color: #a30000;
+	box-shadow: 0 0 15px 10px #a30000;
 }
 
+.richtig {
+	background-color: #00a333;
+	box-shadow: 0 0 15px 10px #00a333;
+}
 
 button {
 	background-color: rgba(255, 255, 255, 0.15);

@@ -28,14 +28,13 @@ function antwort_eingabefilter(event) {
 		// Enter gedrückt
 		let eingabe = parseInt(antwort_feld.val());
 		if (antwort == eingabe) {
-			antwort_feld.removeClass("falsch");
 			antwort_feld.val(""); // Antwortfeld leeren
 			score_erhoehen(1);
-			animation_richtig();
+			animation_flash("richtig");
 			aufgabe_generieren();
 			aufgabe_anzeigen();
 		} else {
-			animation_falsch();
+			animation_flash("falsch");
 		}
 	} else if (event.key === "-" && !antwort_leer) {
 		// Minus nur am Anfang erlauben
@@ -90,19 +89,10 @@ function zufalls_rechenzeichen() {
 	return erlaubte_rechenzeichen[zahl];
 }
 
-function animation_richtig() {
-	score_panel.css("background-color", "green");
-
+function animation_flash(classname) {
+	score_panel.addClass(classname);
 	document.startViewTransition(() => {
-		score_panel.css("background-color", "");
-	});
-}
-
-function animation_falsch() {
-	score_panel.css("background-color", "red");
-
-	document.startViewTransition(() => {
-		score_panel.css("background-color", "");
+		score_panel.removeClass(classname);
 	});
 }
 
