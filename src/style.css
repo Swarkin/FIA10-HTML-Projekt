@@ -81,7 +81,7 @@ button:active {
 
 h1, h2, h3, h4 {
 	margin-top: 0px;
-	margin-bottom: 8px;
+	margin-bottom: 10px;
 }
 
 pre, #antwort {
@@ -104,6 +104,14 @@ table {
 th, td {
 	border: 1px solid rgba(255, 255, 255, 0.25);
 	padding: 6px 4px 4px 4px;
+}
+
+th {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.08);
 }
 
 #aufgabe {
