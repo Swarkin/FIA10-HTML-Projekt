@@ -107,6 +107,10 @@ pre, #antwort {
 	align-items: center;
 }
 
+#antwort:focus {
+	outline: 2px solid #ffffff80;
+}
+
 ul {
 	margin: 0px;
 }
