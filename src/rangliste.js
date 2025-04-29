@@ -7,10 +7,10 @@ const Schwierigkeit = {
 	Schwer: "hard",
 }
 
-let rangliste_tbody;
+var rangliste;
 
 function bereit() {
-	rangliste_tbody = $("#leaderboard-tbody");
+	rangliste = $("#leaderboard-tbody");
 	rangliste_anzeigen(Schwierigkeit.Normal);
 }
 
@@ -21,7 +21,7 @@ function rangliste_anzeigen(schwierigkeit) {
 		})
 		.done(function(result) {
 			console.log("done");
-			rangliste_tbody.empty();
+			rangliste.empty();
 
 			let names = [];
 			let scores = [];
@@ -32,7 +32,7 @@ function rangliste_anzeigen(schwierigkeit) {
 			});
 
 			for (let i = 0; i < names.length; i++) {
-				rangliste_tbody.append("<tr><td>"+names[i]+"</td><td>"+scores[i]+"</td></tr>");
+				rangliste.append("<tr><td>"+names[i]+"</td><td>"+scores[i]+"</td></tr>");
 			}
 		}
 	);

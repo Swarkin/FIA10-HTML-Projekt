@@ -1,12 +1,12 @@
 $("document").ready(bereit);
 
-let antwort_feld;
-let score_feld;
-let score_panel;
-let aufgabe;
-let antwort;
-let score = 0;
-let erlaubte_rechenzeichen = ["+", "-"];
+var antwort_feld;
+var score_feld;
+var score_panel;
+var aufgabe;
+var antwort;
+var score = 0;
+var erlaubte_rechenzeichen = ["+", "-"];
 
 function bereit() {
 	antwort_feld = $("#antwort");
@@ -14,9 +14,12 @@ function bereit() {
 	score_feld = $("#score");
 	score_panel = $(".panel-score");
 
+	let schwierigkeit = sessionStorage.getItem("schwierigkeit");
+	sessionStorage.removeItem("schwierigkeit");
+
 	antwort_feld.focus();
 
-	aufgabe_generieren();
+	aufgabe_generieren(schwierigkeit);
 	aufgabe_anzeigen();
 	timer_starten(15);
 }
@@ -114,9 +117,6 @@ function timer_starten(zeit_s) {
 }
 
 function timer_vorbei() {
-	document.startViewTransition(() => {
-		$("#eingabebereich").hide();
-		score_panel.css("background", "none");
-		score_feld.css("font-size", "xxx-large");
-	});
+	sessionStorage.setItem("ergebnis", score);
+	template_auswechseln(end_screen);
 }

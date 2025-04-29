@@ -15,11 +15,13 @@
 	<link rel="stylesheet" href="style.css">
 
 	<!-- Vorausladen von Skripten -->
+	<link rel="prefetch" href="rangliste.js" as="script">
 	<link rel="prefetch" href="start.js" as="script">
 	<link rel="prefetch" href="game.js" as="script">
-	<link rel="prefetch" href="rangliste.js" as="script">
+	<link rel="prefetch" href="end.js" as="script">
 </head>
 <body>
+	<!-- Hauptelement -->
 	<div id="container">
 		<!-- Hier werden Templates geladen -->
 		<div id="app" class="center">
@@ -56,6 +58,17 @@
 		<script src="start.js"></script>
 
 		<div class="panel app-panel">
+			<h1>TimeAttack</h1>
+			<br>
+			<div>
+				<label for="schwierigkeit">Schwierigkeit:</label>
+				<select id="schwierigkeit">
+					<option value="easy">Leicht</option>
+					<option value="normal" selected>Normal</option>
+					<option value="hard">Schwer</option>
+				</select>
+			</div>
+			<br>
 			<button id="start">Start</button>
 		</div>
 	</template>
@@ -73,6 +86,19 @@
 				<pre id="istgleich">=</pre>
 				<input id="antwort">
 			</div>
+		</div>
+	</template>
+
+	<!-- Endbildschirm -->
+	<template id="end_screen">
+		<script src="end.js"></script>
+
+		<div class="panel app-panel">
+			<pre id="score" class="center">0</pre>
+			<br>
+			<button id="restart">Wiederholen</button>
+			<br>
+			<button id="back">Zurück</button>
 		</div>
 	</template>
 </body>

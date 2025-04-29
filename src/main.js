@@ -1,13 +1,15 @@
 $("document").ready(bereit);
 
-let app;
+var app;
 let start_screen;
 let game_screen;
+let end_screen;
 
 function bereit() {
 	app = $("#app");
 	start_screen = $("#start_screen");
 	game_screen = $("#game_screen");
+	end_screen = $("#end_screen");
 
 	template_auswechseln(start_screen);
 }

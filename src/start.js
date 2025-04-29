@@ -1,11 +1,17 @@
 $("document").ready(bereit);
 
+var start;
+var schwierigkeit;
+
 function bereit() {
-    let start = $("#start");
-    start.click(starten);
-    start.focus();
+	start = $("#start");
+	schwierigkeit = $("#schwierigkeit");
+	
+	start.click(starten);
+	start.focus();
 }
 
 function starten() {
-    template_auswechseln(game_screen);
+	sessionStorage.setItem("schwierigkeit", schwierigkeit.val());
+	template_auswechseln(game_screen);
 }
