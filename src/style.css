@@ -105,6 +105,7 @@ pre, #antwort {
 #eingabebereich {
 	display: flex;
 	align-items: center;
+	padding-top: 20px;
 }
 
 #antwort:focus {
