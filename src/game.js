@@ -59,9 +59,14 @@ function aufgabe_anzeigen() {
 	$("#aufgabe").html(aufgabe.join(""));
 }
 
-function aufgabe_generieren() {
+function aufgabe_generieren(schwierigkeit) {
 	aufgabe = [];
-	let parameter_anzahl = zufalls_zahl(2, 3);
+	let parameter_anzahl = 2;
+	if (schwierigkeit === "normal") {
+		parameter_anzahl = zufalls_zahl(2, 3);
+	} else if (schwierigkeit === "hard") {
+		parameter_anzahl = zufalls_zahl(3, 4);
+	}
 
 	for (let i = 0; i < parameter_anzahl; i++) {
 		aufgabe.push(zufalls_zahl(0, 9));
@@ -97,8 +102,8 @@ function animation_flash(classname) {
 	score_panel.css("outline", "none")
 	document.startViewTransition(() => {
 		score_panel.removeClass(classname);
-	score_panel.css("outline", "")
-});
+		score_panel.css("outline", "")
+	});
 }
 
 function timer_starten(zeit_s) {

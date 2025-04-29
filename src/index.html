@@ -62,11 +62,16 @@
 			<br>
 			<div>
 				<label for="schwierigkeit">Schwierigkeit:</label>
-				<select id="schwierigkeit">
+				<select id="schwierigkeit" onchange="schwierigkeit_aendern(this.value)">
 					<option value="easy">Leicht</option>
 					<option value="normal" selected>Normal</option>
 					<option value="hard">Schwer</option>
 				</select>
+			</div>
+			<br>
+			<div>
+				<label for="name">Name:</label>
+				<input type="text" id="name" maxlength="10" onchange="name_aendern(this.value)">
 			</div>
 			<br>
 			<button id="start">Start</button>
