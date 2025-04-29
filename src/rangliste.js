@@ -1,26 +1,20 @@
 $("document").ready(bereit);
 
 const Api = "https://score.swarkin.dev"
-const Schwierigkeit = {
-	Leicht: "easy",
-	Normal: "normal",
-	Schwer: "hard",
-}
 
 var rangliste;
 
 function bereit() {
 	rangliste = $("#leaderboard-tbody");
-	rangliste_anzeigen(Schwierigkeit.Normal);
+	rangliste_anzeigen("normal");
 }
 
 function rangliste_anzeigen(schwierigkeit) {
 	$.get(Api+"/score?difficulty="+schwierigkeit)
 		.fail(function() {
-			console.log("fail");
+			rangliste.text("Rangliste konnte nicht geladen werden");
 		})
 		.done(function(result) {
-			console.log("done");
 			rangliste.empty();
 
 			let names = [];

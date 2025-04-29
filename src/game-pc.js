@@ -1,12 +1,12 @@
 $("document").ready(bereit);
 
-var antwort_feld;
-var score_feld;
-var score_panel;
-var aufgabe;
-var antwort;
-var score = 0;
-var erlaubte_rechenzeichen = ["+", "-"];
+let antwort_feld;
+let score_feld;
+let score_panel;
+let aufgabe;
+let antwort;
+let score = 0;
+let erlaubte_rechenzeichen = ["+", "-"];
 
 function bereit() {
 	antwort_feld = $("#antwort");
@@ -14,12 +14,9 @@ function bereit() {
 	score_feld = $("#score");
 	score_panel = $(".panel-score");
 
-	let schwierigkeit = sessionStorage.getItem("schwierigkeit");
-	sessionStorage.removeItem("schwierigkeit");
-
 	antwort_feld.focus();
 
-	aufgabe_generieren(schwierigkeit);
+	aufgabe_generieren();
 	aufgabe_anzeigen();
 	timer_starten(15);
 }
@@ -59,14 +56,9 @@ function aufgabe_anzeigen() {
 	$("#aufgabe").html(aufgabe.join(""));
 }
 
-function aufgabe_generieren(schwierigkeit) {
+function aufgabe_generieren() {
 	aufgabe = [];
-	let parameter_anzahl = 2;
-	if (schwierigkeit === "normal") {
-		parameter_anzahl = zufalls_zahl(2, 3);
-	} else if (schwierigkeit === "hard") {
-		parameter_anzahl = zufalls_zahl(3, 4);
-	}
+	let parameter_anzahl = zufalls_zahl(2, 3);
 
 	for (let i = 0; i < parameter_anzahl; i++) {
 		aufgabe.push(zufalls_zahl(0, 9));
@@ -102,8 +94,8 @@ function animation_flash(classname) {
 	score_panel.css("outline", "none")
 	document.startViewTransition(() => {
 		score_panel.removeClass(classname);
-		score_panel.css("outline", "")
-	});
+	score_panel.css("outline", "")
+});
 }
 
 function timer_starten(zeit_s) {
@@ -122,6 +114,9 @@ function timer_starten(zeit_s) {
 }
 
 function timer_vorbei() {
-	sessionStorage.setItem("ergebnis", score);
-	template_auswechseln(end_screen);
+	document.startViewTransition(() => {
+		$("#eingabebereich").hide();
+		score_panel.css("background", "none");
+		score_feld.css("font-size", "xxx-large");
+	});
 }

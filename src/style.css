@@ -167,3 +167,7 @@ tr:nth-child(even) {
 .loading {
 	margin: 0px;
 }
+
+input, select {
+	padding: 4px;
+}
