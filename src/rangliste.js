@@ -1,7 +1,5 @@
 $("document").ready(bereit);
 
-const Api = "https://score.swarkin.dev"
-
 var rangliste;
 
 function bereit() {
@@ -10,7 +8,7 @@ function bereit() {
 }
 
 function rangliste_anzeigen(schwierigkeit) {
-	$.get(Api+"/score?difficulty="+schwierigkeit)
+	get_scores(schwierigkeit)
 		.fail(function() {
 			rangliste.text("Rangliste konnte nicht geladen werden");
 		})
