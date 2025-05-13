@@ -15,6 +15,15 @@ function bereit() {
 		name_input.val(name);
 	}
 
+	let schwierigkeit = sessionStorage.getItem("schwierigkeit");
+	if (schwierigkeit == "easy") {
+		schwierigkeit_select.prop("selectedIndex", 0);
+	} else if (schwierigkeit == "normal") {
+		schwierigkeit_select.prop("selectedIndex", 1);
+	} else if (schwierigkeit == "hard") {
+		schwierigkeit_select.prop("selectedIndex", 2);
+	}
+
 	start.click(starten);
 	start.focus();
 }
@@ -25,7 +34,7 @@ function starten() {
 		name = "Anonym";
 		name_aendern(name);
 	}
-	
+
 	sessionStorage.setItem("schwierigkeit", schwierigkeit_select.val());
 	template_auswechseln(game_screen);
 }
