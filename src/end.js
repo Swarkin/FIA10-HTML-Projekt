@@ -12,8 +12,18 @@ function bereit() {
 	restart.click(neustarten);
 	back.click(zurueck);
 
+	let schwierigkeit = sessionStorage.getItem("schwierigkeit");
+	let name = sessionStorage.getItem("name");
 	let score = sessionStorage.getItem("ergebnis");
 	sessionStorage.removeItem("ergebnis");
+
+	post_scores(schwierigkeit, name, score)
+		.fail((error) => {
+			console.log(error);
+		})
+		.done(() => {
+			rangliste_anzeigen(schwierigkeit);
+		});
 
 	score_feld.text(score);
 }

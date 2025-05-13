@@ -5,6 +5,6 @@ function get_scores(schwierigkeit) {
 }
 
 function post_scores(schwierigkeit, name, score) {
-    let data = {"difficulty": schwierigkeit, "name": name, "score": score};
-	return $.post(Url+"/score", data);
+	let data = {"difficulty": schwierigkeit, "name": name, "score": parseInt(score)};
+	return $.post(Url+"/score", JSON.stringify(data));
 }

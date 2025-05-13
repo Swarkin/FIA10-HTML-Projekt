@@ -180,4 +180,6 @@ tr:nth-child(even) {
 
 input, select {
 	padding: 4px;
+	border-radius: 4px;
+	border: solid 1px gray;
 }

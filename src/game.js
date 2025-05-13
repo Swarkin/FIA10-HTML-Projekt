@@ -15,7 +15,6 @@ function bereit() {
 	score_panel = $(".panel-score");
 
 	let schwierigkeit = sessionStorage.getItem("schwierigkeit");
-	sessionStorage.removeItem("schwierigkeit");
 
 	antwort_feld.focus();
 
