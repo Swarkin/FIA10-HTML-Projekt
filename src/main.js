@@ -22,7 +22,7 @@ function bereit() {
 	}
 
 	if (!sessionStorage.getItem("name")) {
-		sessionStorage.setItem("name", "Anonym");
+		name_aendern("Anonym");
 	}
 
 	template_auswechseln(start_screen);
@@ -36,10 +36,14 @@ function template_auswechseln(template) {
 }
 
 function schwierigkeit_aendern(schwierigkeit) {
+	let refresh = sessionStorage.getItem("schwierigkeit") != schwierigkeit;
 	sessionStorage.setItem("schwierigkeit", schwierigkeit);
-	rangliste_anzeigen(schwierigkeit);
+
+	if (refresh) {
+		rangliste_anzeigen(schwierigkeit);
+	}
 }
 
 function name_aendern(name) {
-	sessionStorage.setItem("name", schwierigkeit);
+	sessionStorage.setItem("name", name);
 }

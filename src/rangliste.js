@@ -1,8 +1,7 @@
 $("document").ready(bereit);
 
-const Api = "https://score.swarkin.dev"
-
 var rangliste;
+var busy = false;
 
 function bereit() {
 	rangliste = $("#leaderboard-tbody");
@@ -10,9 +9,16 @@ function bereit() {
 }
 
 function rangliste_anzeigen(schwierigkeit) {
-	$.get(Api+"/score?difficulty="+schwierigkeit)
-		.fail(function() {
+	if (busy) {
+		return;
+	}
+	busy = true;
+	
+	get_scores(schwierigkeit)
+		.fail(function(error) {
 			rangliste.text("Rangliste konnte nicht geladen werden");
+			console.log(error);
+			busy = false;
 		})
 		.done(function(result) {
 			rangliste.empty();
@@ -28,6 +34,7 @@ function rangliste_anzeigen(schwierigkeit) {
 			for (let i = 0; i < names.length; i++) {
 				rangliste.append("<tr><td>"+names[i]+"</td><td>"+scores[i]+"</td></tr>");
 			}
-		}
-	);
+
+			busy = false;
+		});
 }
