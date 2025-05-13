@@ -4,15 +4,15 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="color-scheme" content="dark">
-
 	<meta name="title" content="TimeAttack">
 	<meta name="description" content="Teste deine Mathe-Schnelligkeit!">
-	<title>TimeAttack</title>
 
+	<title>TimeAttack</title>
+	<link rel="icon" href="../favicon.svg" sizes="any" type="image/svg+xml">
+	<link rel="stylesheet" href="style.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" referrerpolicy="no-referrer" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/14.2.1/math.min.js" referrerpolicy="no-referrer" crossorigin="anonymous"></script>
 	<script src="main.js"></script>
-	<link rel="stylesheet" href="style.css">
 
 	<!-- Vorausladen von Skripten -->
 	<link rel="prefetch" href="api.js" as="script">
@@ -60,7 +60,10 @@
 		<script src="start.js"></script>
 
 		<div class="panel app-panel">
-			<h1>TimeAttack</h1>
+			<div id="header">
+				<img src="../favicon.svg" alt="logo" width="32" height="32">
+				<h1>TimeAttack</h1>
+			</div>
 			<br>
 			<div>
 				<label for="schwierigkeit">Schwierigkeit:</label>
