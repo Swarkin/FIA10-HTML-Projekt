@@ -1,24 +1,24 @@
 $("document").ready(bereit);
 
 var rangliste;
-var busy = false;
+var beschaeftigt = true;
 
 function bereit() {
 	rangliste = $("#leaderboard-tbody");
-	rangliste_anzeigen("normal");
+	beschaeftigt = false
 }
 
 function rangliste_anzeigen(schwierigkeit) {
-	if (busy) {
+	if (beschaeftigt) {
 		return;
 	}
-	busy = true;
+	beschaeftigt = true;
 	
 	get_scores(schwierigkeit)
 		.fail(function(error) {
-			rangliste.text("Rangliste konnte nicht geladen werden");
+			rangliste.text("Rangliste konnte nicht geladen werden.");
 			console.log(error);
-			busy = false;
+			beschaeftigt = false;
 		})
 		.done(function(result) {
 			rangliste.empty();
@@ -35,6 +35,6 @@ function rangliste_anzeigen(schwierigkeit) {
 				rangliste.append("<tr><td>"+names[i]+"</td><td>"+scores[i]+"</td></tr>");
 			}
 
-			busy = false;
+			beschaeftigt = false;
 		});
 }

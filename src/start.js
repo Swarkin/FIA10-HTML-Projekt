@@ -16,6 +16,8 @@ function bereit() {
 	}
 
 	let schwierigkeit = sessionStorage.getItem("schwierigkeit");
+	rangliste_anzeigen(schwierigkeit);
+
 	if (schwierigkeit == "easy") {
 		schwierigkeit_select.prop("selectedIndex", 0);
 	} else if (schwierigkeit == "normal") {
