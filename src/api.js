@@ -1,7 +1,7 @@
 const Url = "https://score.swarkin.dev"
 
-function get_scores(schwierigkeit) {
-	return $.get(Url+"/score?difficulty="+schwierigkeit);
+function get_scores(schwierigkeit, n = 10) {
+	return $.get(Url+"/score?difficulty="+schwierigkeit+"&n="+n);
 }
 
 function post_scores(schwierigkeit, name, score) {
