@@ -2,7 +2,7 @@
 :root {
 	--timer: 0.0;
 	--radius: 6px;
-	--leaderboard-size: 200px;
+	--leaderboard-size: 250px;
 }
 
 body {
@@ -40,8 +40,46 @@ body, html, .full-width {
 	align-content: center;
 }
 
+.leaderboard-panel {
+	max-height: 75%;
+	overflow: auto;
+	view-transition-name: leaderboard;
+}
+
+@media (max-width: 550px) {
+	#app {
+		width: 100%;
+	}
+
+	.app-panel {
+		margin-bottom: 45vh;
+	}
+
+	.leaderboard-panel {
+		max-height: 30vh;
+		margin: 0vw 3vw;
+	}
+
+	#leaderboard {
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+	}
+
+	@media (max-height: 300px) {
+		#leaderboard {
+			display: none;
+		}
+
+		.app-panel {
+			margin-bottom: unset;
+		}
+	}
+}
+
+
 .panel {
-	background-color: #ffffff1a;
+	background-color: #2A2A2A;
 	border-radius: 12px;
 	padding: 20px;
 	box-shadow: 0px 4px 15px 8px black;
@@ -140,6 +178,13 @@ th, td {
 	padding: 6px 6px 4px 6px;
 }
 
+td {
+	max-width: 120px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
 th {
     background-color: rgba(255, 255, 255, 0.15);
 }
@@ -170,12 +215,7 @@ tr:nth-child(even) {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: stretch;
 	view-transition-name: app;
-}
-
-.leaderboard-panel {
-	view-transition-name: leaderboard;
 }
 
 .loading {
