@@ -143,7 +143,9 @@ function timer_starten(schwierigkeit) {
 	let zeit = 0;
 	let zeit_s = 15;
 
-	if (schwierigkeit == "hard") {
+	if (schwierigkeit == "normal") {
+		zeit_s = 20;
+	} else if (schwierigkeit == "hard") {
 		zeit_s = 30;
 	}
 

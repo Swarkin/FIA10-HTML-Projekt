@@ -38,6 +38,19 @@ function template_auswechseln(template) {
 function schwierigkeit_aendern(schwierigkeit) {
 	let refresh = sessionStorage.getItem("schwierigkeit") != schwierigkeit;
 	sessionStorage.setItem("schwierigkeit", schwierigkeit);
+	
+	let zeitanzeige = document.getElementById("zeitanzeige");
+	switch (schwierigkeit) {
+		case "easy":
+			zeitanzeige.innerText = "15s";
+			break;
+		case "normal":
+			zeitanzeige.innerText = "20s";
+			break;
+		case "hard":
+			zeitanzeige.innerText = "30s";
+			break;
+	}
 
 	if (refresh) {
 		rangliste_anzeigen(schwierigkeit);
