@@ -64,21 +64,17 @@
 				<img src="../favicon.svg" alt="logo" width="32" height="32">
 				<h1>TimeAttack</h1>
 			</div>
-			<br>
-			<div>
+			<div class="config">
 				<label for="schwierigkeit">Schwierigkeit:</label>
 				<select id="schwierigkeit" onchange="schwierigkeit_aendern(this.value)">
 					<option value="easy">Leicht</option>
 					<option value="normal" selected>Normal</option>
 					<option value="hard">Schwer</option>
 				</select>
-			</div>
-			<br>
-			<div>
+				<br>
 				<label for="name">Name:</label>
-				<input type="text" id="name" maxlength="10" placeholder="Anonym" autocomplete="name" onchange="name_aendern(this.value)">
+				<input type="text" id="name" maxlength="16" placeholder="Anonym" autocomplete="name" onchange="name_aendern(this.value)">
 			</div>
-			<br>
 			<button id="start">Start</button>
 		</div>
 	</template>

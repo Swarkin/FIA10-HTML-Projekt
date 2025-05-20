@@ -36,7 +36,7 @@ body, html, .full-width {
 
 #leaderboard {
 	width: var(--leaderboard-size);
-	margin: 10px 10px 10px 0px;
+	margin: 10px 20px 10px 0px;
 	align-content: center;
 }
 
@@ -66,6 +66,10 @@ body, html, .full-width {
 
 #header > h1 {
 	margin: 0px;
+}
+
+.config {
+	margin: 8px 0px;
 }
 
 .falsch {
@@ -180,6 +184,7 @@ tr:nth-child(even) {
 
 input, select {
 	padding: 4px;
+	margin: 4px 0px;
 	border-radius: 4px;
 	border: solid 1px gray;
 }
