@@ -1,26 +1,26 @@
 $("document").ready(bereit);
 
+var schwierigkeit;
 var antwort_feld;
 var score_feld;
 var score_panel;
 var aufgabe;
 var antwort;
 var score = 0;
-var erlaubte_rechenzeichen = ["+", "-"];
+var score_plus = 0;
 
 function bereit() {
 	antwort_feld = $("#antwort");
 	antwort_feld.on("keypress", antwort_eingabefilter);
 	score_feld = $("#score");
 	score_panel = $(".panel-score");
-
-	let schwierigkeit = sessionStorage.getItem("schwierigkeit");
+	schwierigkeit = sessionStorage.getItem("schwierigkeit");
 
 	antwort_feld.focus();
 
 	aufgabe_generieren(schwierigkeit);
 	aufgabe_anzeigen();
-	timer_starten(15);
+	timer_starten(schwierigkeit);
 }
 
 function antwort_eingabefilter(event) {
@@ -31,9 +31,9 @@ function antwort_eingabefilter(event) {
 		let eingabe = parseInt(antwort_feld.val());
 		if (antwort == eingabe) {
 			antwort_feld.val(""); // Antwortfeld leeren
-			score_erhoehen(1);
+			score_erhoehen();
 			animation_flash("richtig");
-			aufgabe_generieren();
+			aufgabe_generieren(schwierigkeit);
 			aufgabe_anzeigen();
 		} else {
 			animation_flash("falsch");
@@ -60,20 +60,53 @@ function aufgabe_anzeigen() {
 
 function aufgabe_generieren(schwierigkeit) {
 	aufgabe = [];
+	score_plus = 1;
 	let parameter_anzahl = 2;
-	if (schwierigkeit === "normal") {
-		parameter_anzahl = zufalls_zahl(2, 3);
-	} else if (schwierigkeit === "hard") {
-		parameter_anzahl = zufalls_zahl(3, 4);
+	let zeichen = ["+", "-"];
+	// Beschränkt auf nur ein Mal- oder Geteiltzeichen
+	let besonderes_zeichen = false;
+	// Begrenzt die nächste Zufallszahl
+	let temp_limit = 0;
+
+	switch (schwierigkeit) {
+		case "easy":
+			parameter_anzahl = 2;
+			zeichen = ["+", "-"];
+			break;
+		case "normal":
+			parameter_anzahl = zufalls_zahl(2, 3);
+			zeichen = ["+", "-", "*"];
+			break;
+		case "hard":
+			parameter_anzahl = zufalls_zahl(3, 4);
+			zeichen = ["+", "-", "*", "/"];
+			break;
 	}
 
 	for (let i = 0; i < parameter_anzahl; i++) {
-		aufgabe.push(zufalls_zahl(0, 9));
+		// Wenn bereits ein Mal- oder Geteiltzeichen existiert, verwende nur noch einfache, gerade Zahlen
+		if (besonderes_zeichen) {
+			aufgabe.push(zufalls_zahl(1, 4) * 2);
+		} else {
+			let max = (temp_limit != 0) ? temp_limit : 9;
+			aufgabe.push(zufalls_zahl(0, max));
+		}
 
 		if (i < parameter_anzahl - 1) {
-			let rechenzeichen = zufalls_rechenzeichen();
+			temp_limit = 0;
+			if (besonderes_zeichen) {
+				zeichen = ["+", "-"];
+			}
 
-			// todo: Saubere Teilbarkeit überprüfen, 0 vermeiden
+			let rechenzeichen = zufalls_rechenzeichen(zeichen);
+			if (rechenzeichen == "*") {
+				score_plus += 1;
+				temp_limit = 5;
+				besonderes_zeichen = true;
+			} else if (rechenzeichen == "/") {
+				score_plus += 3;
+				besonderes_zeichen = true;
+			}
 
 			aufgabe.push(rechenzeichen);
 		}
@@ -82,8 +115,8 @@ function aufgabe_generieren(schwierigkeit) {
 	antwort = math.evaluate(aufgabe.join(""));
 }
 
-function score_erhoehen(zahl) {
-	score += zahl;
+function score_erhoehen() {
+	score += score_plus;
 	score_feld.text(score);
 }
 
@@ -91,9 +124,9 @@ function zufalls_zahl(min, max) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function zufalls_rechenzeichen() {
-	let zahl = zufalls_zahl(0, erlaubte_rechenzeichen.length - 1);
-	return erlaubte_rechenzeichen[zahl];
+function zufalls_rechenzeichen(zeichen) {
+	let zahl = zufalls_zahl(0, zeichen.length - 1);
+	return zeichen[zahl];
 }
 
 function animation_flash(classname) {
@@ -105,9 +138,14 @@ function animation_flash(classname) {
 	});
 }
 
-function timer_starten(zeit_s) {
-	let interval = 0.05;
+function timer_starten(schwierigkeit) {
+	const interval = 0.05;
 	let zeit = 0;
+	let zeit_s = 15;
+
+	if (schwierigkeit == "hard") {
+		zeit_s = 30;
+	}
 
 	let a = setInterval(() => {
 		zeit += interval;
