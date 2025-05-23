@@ -132,10 +132,17 @@ function zufalls_rechenzeichen(zeichen) {
 function animation_flash(classname) {
 	score_panel.addClass(classname);
 	score_panel.css("outline", "none")
-	document.startViewTransition(() => {
+
+	const update = () => {
 		score_panel.removeClass(classname);
 		score_panel.css("outline", "")
-	});
+	};
+
+	if (document.startViewTransition) {
+		document.startViewTransition(update);
+	} else {
+		update();
+	}
 }
 
 function timer_starten(schwierigkeit) {

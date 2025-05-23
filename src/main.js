@@ -29,10 +29,16 @@ function bereit() {
 }
 
 function template_auswechseln(template) {
-	document.startViewTransition(() => {
+	const update = () => {
 		app.empty();
 		template.contents().clone().appendTo(app);
-	});
+	};
+
+	if (document.startViewTransition) {
+		document.startViewTransition(update);
+	} else {
+		update();
+	}
 }
 
 function schwierigkeit_aendern(schwierigkeit) {
