@@ -1,10 +1,12 @@
 $("document").ready(bereit);
 
 var rangliste;
+var rangliste_titel;
 var beschaeftigt = true;
 
 function bereit() {
 	rangliste = $("#leaderboard-tbody");
+	rangliste_titel = $("#leaderboard-title");
 	beschaeftigt = false
 }
 
@@ -13,6 +15,7 @@ function rangliste_anzeigen(schwierigkeit) {
 		return;
 	}
 	beschaeftigt = true;
+	rangliste_titel.text("Rangliste ("+schwierigkeit_deutsch(schwierigkeit)+")");
 	
 	get_scores(schwierigkeit)
 		.fail(function(error) {
@@ -21,20 +24,39 @@ function rangliste_anzeigen(schwierigkeit) {
 			beschaeftigt = false;
 		})
 		.done(function(result) {
-			rangliste.empty();
+			const update = () => {
+				let names = [];
+				let scores = [];
 
-			let names = [];
-			let scores = [];
+				rangliste.empty();
+				result.forEach(eintrag => {
+					names.push(eintrag["name"]);
+					scores.push(eintrag["score"])
+				});
 
-			result.forEach(eintrag => {
-				names.push(eintrag["name"]);
-				scores.push(eintrag["score"])
-			});
+				for (let i = 0; i < names.length; i++) {
+					rangliste.append("<tr><td>"+names[i]+"</td><td>"+scores[i]+"</td></tr>");
+				}
+			};
 
-			for (let i = 0; i < names.length; i++) {
-				rangliste.append("<tr><td>"+names[i]+"</td><td>"+scores[i]+"</td></tr>");
+			// Browser-Support überprüfen
+			if (document.startViewTransition) {
+				document.startViewTransition(update);
+			} else {
+				update();
 			}
 
 			beschaeftigt = false;
 		});
+}
+
+function schwierigkeit_deutsch(schwierigkeit) {
+	switch (schwierigkeit) {
+		case "easy":
+			return "Leicht";
+		case "normal":
+			return "Normal";
+		case "hard":
+			return "Schwer";
+	}
 }
