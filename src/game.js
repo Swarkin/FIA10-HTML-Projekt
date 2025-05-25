@@ -181,5 +181,15 @@ function timer_starten(schwierigkeit) {
 function timer_vorbei() {
 	sessionStorage.setItem("ergebnis", score);
 	sessionStorage.setItem("historie", JSON.stringify(historie));
+
+	// Ergebnis zur Gesamthistorie hinzufügen
+	let gesamthistorie = localStorage.getItem("gesamthistorie");
+	if (!gesamthistorie) {
+		gesamthistorie = "[]";
+	}
+	gesamthistorie = JSON.parse(gesamthistorie);
+	gesamthistorie.push(historie);
+	localStorage.setItem("gesamthistorie", JSON.stringify(gesamthistorie));
+
 	template_auswechseln(end_screen);
 }

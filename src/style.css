@@ -43,7 +43,15 @@ body, html, .full-width {
 .leaderboard-panel {
 	max-height: 75%;
 	overflow: auto;
+	text-align: center;
 	view-transition-name: leaderboard;
+}
+
+#grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 20px;
+	overflow: auto;
 }
 
 @media (max-width: 550px) {
@@ -65,6 +73,10 @@ body, html, .full-width {
 		bottom: 0;
 		width: 100%;
 	}
+	
+	#grid {
+		grid-template-columns: 1fr;
+	}
 
 	@media (max-height: 300px) {
 		#leaderboard {
@@ -76,7 +88,6 @@ body, html, .full-width {
 		}
 	}
 }
-
 
 .panel {
 	background-color: #2A2A2A;
@@ -232,4 +243,8 @@ input, select {
 #results {
 	max-height: 30vh;
 	overflow: auto;
+}
+
+#history {
+	user-select: none;
 }

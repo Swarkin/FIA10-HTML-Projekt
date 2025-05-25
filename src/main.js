@@ -7,6 +7,7 @@ var name_input;
 let start_screen;
 let game_screen;
 let end_screen;
+let history_screen;
 
 function bereit() {
 	app = $("#app");
@@ -16,6 +17,7 @@ function bereit() {
 	start_screen = $("#start_screen");
 	game_screen = $("#game_screen");
 	end_screen = $("#end_screen");
+	history_screen = $("#history_screen");
 
 	if (!sessionStorage.getItem("schwierigkeit")) {
 		sessionStorage.setItem("schwierigkeit", "normal");
@@ -34,6 +36,7 @@ function template_auswechseln(template) {
 		template.contents().clone().appendTo(app);
 	};
 
+	// Browser-Support überprüfen
 	if (document.startViewTransition) {
 		document.startViewTransition(update);
 	} else {

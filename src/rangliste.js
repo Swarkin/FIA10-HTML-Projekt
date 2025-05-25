@@ -3,10 +3,15 @@ $("document").ready(bereit);
 var rangliste;
 var rangliste_titel;
 var beschaeftigt = true;
+var uebersicht;
+var in_uebersicht = false;
 
 function bereit() {
 	rangliste = $("#leaderboard-tbody");
 	rangliste_titel = $("#leaderboard-title");
+	uebersicht = $("#history");
+	uebersicht.click(uebersicht_wechseln);
+
 	beschaeftigt = false
 }
 
@@ -19,7 +24,7 @@ function rangliste_anzeigen(schwierigkeit) {
 	
 	get_scores(schwierigkeit)
 		.fail(function(error) {
-			rangliste.text("Rangliste konnte nicht geladen werden.");
+			rangliste.text("❌ Rangliste konnte nicht geladen werden.");
 			console.log(error);
 			beschaeftigt = false;
 		})
@@ -48,6 +53,19 @@ function rangliste_anzeigen(schwierigkeit) {
 
 			beschaeftigt = false;
 		});
+}
+
+function uebersicht_wechseln() {
+	if (in_uebersicht) {
+		template_auswechseln(start_screen);
+		uebersicht.text("Übersicht");
+	} else {
+		template_auswechseln(history_screen);
+		uebersicht.text("Zurück");
+
+	}
+
+	in_uebersicht = !in_uebersicht;
 }
 
 function schwierigkeit_deutsch(schwierigkeit) {

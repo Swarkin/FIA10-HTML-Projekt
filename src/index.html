@@ -20,6 +20,7 @@
 	<link rel="prefetch" href="start.js" as="script">
 	<link rel="prefetch" href="game.js" as="script">
 	<link rel="prefetch" href="end.js" as="script">
+	<link rel="prefetch" href="history.js" as="script">
 </head>
 <body>
 	<!-- Hauptelement -->
@@ -37,7 +38,7 @@
 			<script src="rangliste.js"></script>
 
 			<div class="panel leaderboard-panel">
-				<h2 class="center">Rangliste</h2>
+				<h2 id="leaderboard-title" class="center">Rangliste</h2>
 				<table>
 					<thead>
 						<tr>
@@ -45,12 +46,14 @@
 							<th>Score</th>
 						</tr>
 					</thead>
-					<tbody id="leaderboard-tbody">
+					<tbody id="leaderboard-tbody" translate="no">
 						<tr>
 							<td colspan="2" class="loading center-text">Lädt...</td>
 						</tr>
 					</tbody>
 				</table>
+				<br>
+				<button id="history">Übersicht</button>
 			</div>
 		</div>
 	</div>
@@ -125,6 +128,29 @@
 			<br>
 			<button id="back">Zurück</button>
 		</div>
+	</template>
+
+	<!-- Übersichtsbildschirm -->
+	<template id="history_screen">
+		<script src="history.js"></script>
+
+		<div class="panel app-panel">
+		<div id="grid"></div>
+		</div>
+	</template>
+
+	<!-- Tabelle für Übersichtsbildschirm -->
+	<template id="table_template">
+		<table>
+			<thead>
+				<tr>
+					<th>Rechnung</th>
+					<th>Antwort</th>
+					<th>Punkte</th>
+				</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
 	</template>
 </body>
 </html>
