@@ -8,6 +8,8 @@ var aufgabe;
 var antwort;
 var score = 0;
 var score_plus = 0;
+var aufgabe_nr = -1;
+var historie = [];
 
 function bereit() {
 	antwort_feld = $("#antwort");
@@ -30,6 +32,10 @@ function antwort_eingabefilter(event) {
 		// Enter gedrückt
 		let eingabe = parseInt(antwort_feld.val());
 		if (antwort == eingabe) {
+			// Ergebnisse speichern
+			historie[aufgabe_nr]["eingabe"] = eingabe;
+			historie[aufgabe_nr]["score"] = score_plus;
+
 			antwort_feld.val(""); // Antwortfeld leeren
 			score_erhoehen();
 			animation_flash("richtig");
@@ -60,6 +66,7 @@ function aufgabe_anzeigen() {
 
 function aufgabe_generieren(schwierigkeit) {
 	aufgabe = [];
+	aufgabe_nr += 1;
 	score_plus = 1;
 	let parameter_anzahl = 2;
 	let zeichen = ["+", "-"];
@@ -86,7 +93,7 @@ function aufgabe_generieren(schwierigkeit) {
 	for (let i = 0; i < parameter_anzahl; i++) {
 		// Wenn bereits ein Mal- oder Geteiltzeichen existiert, verwende nur noch einfache, gerade Zahlen
 		if (besonderes_zeichen) {
-			aufgabe.push(zufalls_zahl(1, 4) * 2);
+			aufgabe.push(zufalls_zahl(1, 5) * 2);
 		} else {
 			let max = (temp_limit != 0) ? temp_limit : 9;
 			aufgabe.push(zufalls_zahl(0, max));
@@ -112,7 +119,11 @@ function aufgabe_generieren(schwierigkeit) {
 		}
 	}
 
+	// Ergebnis berechnen
 	antwort = math.evaluate(aufgabe.join(""));
+
+	// Aufgabe in Historie speichern
+	historie[aufgabe_nr] = { "aufgabe": aufgabe, "antwort": antwort };
 }
 
 function score_erhoehen() {
@@ -169,5 +180,6 @@ function timer_starten(schwierigkeit) {
 
 function timer_vorbei() {
 	sessionStorage.setItem("ergebnis", score);
+	sessionStorage.setItem("historie", JSON.stringify(historie));
 	template_auswechseln(end_screen);
 }
