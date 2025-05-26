@@ -62,7 +62,6 @@ function uebersicht_wechseln() {
 	} else {
 		template_auswechseln(history_screen);
 		uebersicht.text("Zurück");
-
 	}
 
 	in_uebersicht = !in_uebersicht;
