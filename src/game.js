@@ -93,7 +93,24 @@ function aufgabe_generieren(schwierigkeit) {
 	for (let i = 0; i < parameter_anzahl; i++) {
 		// Wenn bereits ein Mal- oder Geteiltzeichen existiert, verwende nur noch einfache, gerade Zahlen
 		if (besonderes_zeichen) {
-			aufgabe.push(zufalls_zahl(1, 5) * 2);
+			let zahl = zufalls_zahl(1, 4) * 2;
+
+			// Wenn davor ein Geteiltzeichen ist
+			if (aufgabe[aufgabe.length - 1] === "/") {
+				// Letzte Zahl finden
+				let letztes = aufgabe[aufgabe.length - 2];
+
+				// Darf nicht 0 sein
+				if (letztes === 0) {
+					aufgabe[aufgabe.length - 2] = zufalls_zahl(1, 4) * 2;
+				}
+
+				// Dann teilbarkeit pruefen
+				while (!ist_schoen_teilbar(letztes, zahl)) {
+					zahl = zufalls_zahl(1, 4) * 2;
+				}
+			}
+			aufgabe.push(zahl);
 		} else {
 			let max = (temp_limit != 0) ? temp_limit : 9;
 			aufgabe.push(zufalls_zahl(0, max));
@@ -111,6 +128,13 @@ function aufgabe_generieren(schwierigkeit) {
 				temp_limit = 5;
 				besonderes_zeichen = true;
 			} else if (rechenzeichen == "/") {
+				// Gerade, einfache Zahl generieren
+				let letztes = aufgabe.pop();
+				if (letztes % 2) {
+					letztes -= 1;
+				}
+				aufgabe.push(letztes);
+
 				score_plus += 3;
 				besonderes_zeichen = true;
 			}
@@ -124,6 +148,13 @@ function aufgabe_generieren(schwierigkeit) {
 
 	// Aufgabe in Historie speichern
 	historie[aufgabe_nr] = { "aufgabe": aufgabe, "antwort": antwort };
+}
+
+function ist_schoen_teilbar(a, b) {
+    if (b === 0) {
+        return false;
+    }
+    return a % b === 0;
 }
 
 function score_erhoehen() {
