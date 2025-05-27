@@ -28,6 +28,7 @@ function bereit() {
 			}
 
 			let table = table_template.contents().clone().appendTo(grid);
+			$(".durchlauf-nr", table).text("Durchlauf " + (i + 1));
 			$("tbody", table).html(html);
 		}
 	}
