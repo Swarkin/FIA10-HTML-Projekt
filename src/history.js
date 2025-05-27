@@ -16,6 +16,7 @@ function bereit() {
 	if (gesamthistorie.length === 0) {
 		grid.html("<p style=\"grid-column: span 2;\">Du hast noch keine Durchläufe gespielt!</p>");
 	} else {
+		// Tabellen generieren
 		for (let i = 0; i < gesamthistorie.length; i++) {
 			const durchlauf = gesamthistorie[i];
 			let html = "";

@@ -19,7 +19,8 @@ function bereit() {
 	end_screen = $("#end_screen");
 	history_screen = $("#history_screen");
 
-	if (!sessionStorage.getItem("schwierigkeit")) {
+	let schwierigkeit = sessionStorage.getItem("schwierigkeit");
+	if (!schwierigkeit) {
 		sessionStorage.setItem("schwierigkeit", "normal");
 	}
 
@@ -27,7 +28,17 @@ function bereit() {
 		name_aendern("Anonym");
 	}
 
-	template_auswechseln(start_screen);
+	let transition = template_auswechseln(start_screen);
+
+	let funktion = () => {
+		rangliste_anzeigen(schwierigkeit);
+	};
+
+	if (transition) {
+		transition.finished.then(funktion);
+	} else {
+		funktion();
+	}
 }
 
 function template_auswechseln(template) {
@@ -38,7 +49,8 @@ function template_auswechseln(template) {
 
 	// Browser-Support überprüfen
 	if (document.startViewTransition) {
-		document.startViewTransition(update);
+		// Transition starten
+		return document.startViewTransition(update);
 	} else {
 		update();
 	}
@@ -47,7 +59,7 @@ function template_auswechseln(template) {
 function schwierigkeit_aendern(schwierigkeit) {
 	let refresh = sessionStorage.getItem("schwierigkeit") != schwierigkeit;
 	sessionStorage.setItem("schwierigkeit", schwierigkeit);
-	
+
 	let zeitanzeige = document.getElementById("zeitanzeige");
 	switch (schwierigkeit) {
 		case "easy":
