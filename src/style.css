@@ -47,6 +47,12 @@ body, html, .full-width {
 	view-transition-name: leaderboard;
 }
 
+.leaderboard-buttons {
+	display: flex;
+	justify-content: center;
+	gap: 10px;
+}
+
 #grid {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
