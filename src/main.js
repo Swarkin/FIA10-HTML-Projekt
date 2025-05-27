@@ -21,7 +21,8 @@ function bereit() {
 
 	let schwierigkeit = sessionStorage.getItem("schwierigkeit");
 	if (!schwierigkeit) {
-		sessionStorage.setItem("schwierigkeit", "normal");
+		schwierigkeit = "normal";
+		sessionStorage.setItem("schwierigkeit", schwierigkeit);
 	}
 
 	if (!sessionStorage.getItem("name")) {
