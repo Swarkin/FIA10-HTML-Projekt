@@ -9,7 +9,7 @@ var antwort;
 var score = 0;
 var score_plus = 0;
 var aufgabe_nr = -1;
-var historie = [];
+var historie = {"aufgaben": [], "schwierigkeit": null};
 
 function bereit() {
 	antwort_feld = $("#antwort");
@@ -18,6 +18,7 @@ function bereit() {
 	score_panel = $(".panel-score");
 	schwierigkeit = sessionStorage.getItem("schwierigkeit");
 
+	historie["schwierigkeit"] = schwierigkeit;
 	antwort_feld.focus();
 
 	aufgabe_generieren(schwierigkeit);
@@ -33,8 +34,8 @@ function antwort_eingabefilter(event) {
 		let eingabe = parseInt(antwort_feld.val());
 		if (antwort == eingabe) {
 			// Ergebnisse speichern
-			historie[aufgabe_nr]["eingabe"] = eingabe;
-			historie[aufgabe_nr]["score"] = score_plus;
+			historie["aufgaben"][aufgabe_nr]["eingabe"] = eingabe;
+			historie["aufgaben"][aufgabe_nr]["score"] = score_plus;
 
 			antwort_feld.val(""); // Antwortfeld leeren
 			score_erhoehen();
@@ -147,7 +148,7 @@ function aufgabe_generieren(schwierigkeit) {
 	antwort = math.evaluate(aufgabe.join(""));
 
 	// Aufgabe in Historie speichern
-	historie[aufgabe_nr] = { "aufgabe": aufgabe, "antwort": antwort };
+	historie["aufgaben"][aufgabe_nr] = { "aufgabe": aufgabe, "antwort": antwort };
 }
 
 function ist_schoen_teilbar(a, b) {

@@ -36,8 +36,10 @@ function bereit() {
 	score_feld.text(score);
 	ergebnisse.empty();
 
-	for (let i = 0; i < historie.length - 1; i++) {
-		const element = historie[i];
+		$("#endergebnisse_titel").text("Endergebnis (" + schwierigkeit_deutsch(schwierigkeit) + ")");
+
+	for (let i = 0; i < historie["aufgaben"].length - 1; i++) {
+		const element = historie["aufgaben"][i];
 		let aufgabe_text = element["aufgabe"].join(" ");
 		ergebnisse.append("<tr><td>"+aufgabe_text+"</td><td>"+element["antwort"]+"</td><td>"+element["score"]+"</td></tr>");
 	}

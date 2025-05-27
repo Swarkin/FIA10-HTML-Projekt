@@ -21,14 +21,15 @@ function bereit() {
 			const durchlauf = gesamthistorie[i];
 			let html = "";
 
-			for (let j = 0; j < durchlauf.length - 1; j++) {
-				const aufgabe = durchlauf[j];
+			for (let j = 0; j < durchlauf["aufgaben"].length - 1; j++) {
+				const aufgabe = durchlauf["aufgaben"][j];
 				let aufgabe_text = aufgabe["aufgabe"].join(" ");
 				html += "<tr><td>"+aufgabe_text+"</td><td>"+aufgabe["antwort"]+"</td><td>"+aufgabe["score"]+"</td></tr>";
 			}
 
 			let table = table_template.contents().clone().appendTo(grid);
-			$(".durchlauf-nr", table).text("Durchlauf " + (i + 1));
+			let schwierigkeit_text = schwierigkeit_deutsch(durchlauf["schwierigkeit"]);
+			$(".durchlauf-nr", table).text("Durchlauf " + (i + 1) + ": " + schwierigkeit_text);
 			$("tbody", table).html(html);
 		}
 	}
